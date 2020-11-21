@@ -10,7 +10,7 @@ const Form = (props) => {
     
     return (
         <div>
-            <form onSubmit={this.onFormSubmit}>
+            <form >
             
             {props.inputs? <Inputs />: "" }
             {props.radio ? <Radio />: ""}
