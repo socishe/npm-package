@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.scss";
+import Form from "./components/Form";
 
 const App = () => {
   const formData = [
