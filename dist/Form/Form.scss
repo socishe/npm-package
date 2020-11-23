@@ -1,0 +1,157 @@
+@mixin borderRadius {
+    border-radius: 25px;
+}
+
+.travism-form {
+
+
+    input,
+    select,
+    textarea {
+        border-radius: 0;
+        outline: none;
+    }
+
+    .travism-input-field {
+        flex-wrap: wrap;
+        display: flex;
+        margin-bottom: 20px;
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 400;
+
+            span {
+                color: var(--lightRed);
+            }
+        }
+
+        input,
+        select,
+        textarea {
+            display: block;
+            width: 100%;
+            border: 1px solid #7b7b7b;
+            min-height: 30px;
+            padding: 7px 15px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        textarea {
+            min-height: 185px;
+            max-height: 200px;
+            resize: vertical;
+            padding: 22px;
+        }
+
+        &.error {
+
+            input,
+            select,
+            textarea {
+                border-color: var(--lightRed);
+            }
+        }
+
+        &.valid {
+
+            input,
+            select,
+            textarea,
+            .input-radio {
+                border-color: var(--green);
+            }
+        }
+    }
+
+    .input-radio {
+        width: 100%;
+        border-radius: 0;
+        border: 1px solid #7b7b7b;
+
+        label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        legend {
+            font-size: 14px;
+            font-weight: 400;
+
+            span {
+                color: var(--lightRed);
+            }
+        }
+
+        input {
+            width: auto;
+            display: inline-block;
+            margin-top: -1px;
+            margin-right: 8px;
+        }
+    }
+
+    &.curvey .input-radio {
+        border-radius: 12px;
+    }
+
+    .form-footer {
+        border-top: 1px solid #666;
+        padding-top: 18px;
+        text-align: right;
+
+        &.right {
+            text-align: right !important;
+        }
+
+        &.center {
+            text-align: center !important;
+        }
+
+        &.left {
+            text-align: left !important;
+        }
+    }
+
+    button {
+        border-radius: 0;
+        padding: 12px 25px;
+        min-width: 135px;
+        max-width: 135px;
+        font-size: 14px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .form-submit {
+        border: 1px solid #1a1818;
+        background-color: #231F20;
+        color: #fff;
+
+        &:disabled {
+            opacity: 0.6;
+        }
+    }
+
+    &.curvey {
+
+        input,
+        select,
+        textarea,
+        button {
+            @include borderRadius();
+        }
+    }
+
+    .travism-input-error {
+        color: var(--lightRed);
+        font-size: 12px;
+        font-weight: 400;
+        padding-top: 3px;
+        padding-left: 5px;
+    }
+}
