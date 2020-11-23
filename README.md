@@ -6,65 +6,173 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm install`
+
+installed all required packages for the project
+
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### How to use this package
 
-### `npm test`
+To start using the tool, it has to be feed with field data as follows:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+const formData = [
+    {
+      type: "text",
+      name: "name",
+      label: "First Name",
+      required: true,
+      placeholder: "Enter your first name",
+    },
+    {
+      type: "email",
+      name: "email",
+      label: "Email Address",
+      required: false,
+      placeholder: "Enter your email address",
+    },
+    {
+      type: "radio",
+      name: "languages",
+      label: "Which languages do you require?",
+      required: true,
+      options: [
+        {
+          value: "PHP",
+        },
+        {
+          value: "JavaScript",
+        },
+        {
+          value: "Java",
+        },
+      ],
+    },
+    {
+      type: "checkbox",
+      label: "Select what you want?",
+      required: true,
+      name: "font types",
+      options: [
+        {
+          value: "Roboto",
+        },
+        {
+          value: "Castoro",
+        },
+        {
+          value: "Open Sans",
+        },
+      ],
+    },
+    {
+      type: "textarea",
+      name: "special instructions",
+      label: "Special Instructions",
+      required: true,
+      placeholder: "Write your special instructions...",
+      defaultValue:
+        "This is a real test write now, but when things start to get fun, that's when you change things.",
+      minCharacters: 10,
+    },
+  ];
+```
 
-### `npm run build`
+Note that you can generate different types of inputs,
+1. For generic input field
+    Object data has to contain, note that generic input fields can be have type of `text`, `email`, and `number`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    ```js
+    {
+      type: "text", // Can be number, email, or text
+      name: "name",
+      label: "First Name",
+      required: true, // Optional, defaults to false
+      placeholder: "Enter your first name", // Optional
+    },
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. To generate `checkbox`:
+    Object data has to contain 
+    ```js
+    {
+      type: "checkbox",
+      label: "Select what you want?",
+      required: true, // Optional, defaults to false
+      name: "font types",
+      options: [
+        {
+          value: "Roboto",
+        },
+        ...
+      ],
+    },
+    ```
+3. For `textarea`:
+    Object data has to contain 
+    ```js
+    {
+      type: "textarea",
+      name: "special instructions",
+      label: "Special Instructions",
+      required: true, // Optional, defaults to false
+      placeholder: "Write your special instructions...", // Optional
+      defaultValue: "", // Optional
+      minCharacters: 10, // Optional, default is 0
+    },
+    ```
+4. For `radio` input field:
+    Object data has to contain
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    ```js
+    {
+      type: "radio",
+      name: "languages",
+      label: "Which languages do you require?",
+      required: true, // Optional, defaults to false
+      options: [
+        {
+          value: "PHP",
+        },
+        {
+          value: "JavaScript",
+        },
+        ...
+      ],
+    },
+    ```
 
-### `npm run eject`
+### How to use this formData
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The Form component accepts a number of props, one is for feeding in this formData:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```jsx
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    import Form from travism
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    return (
+        <Form
+            endpoint="http://localhost:3000/npm-package"
+            onStatus={onValidate}
+            fields={formData} // <- Form data goes in here 
+            roundBorder
+            btnPosition="center"
+            submitBtnTxt="Submit data"
+        />
+    );
+```
 
-## Learn More
+## Prop usage
+* `endpoint`: Accepts an endpoint to submit the form
+* `onStatus`: Return current status of the form, either, dirty or clean.
+* `fields`: Data used to render different input fields of the form.
+* `roundBorder`: It's a boolean, whether want the input fields to have some border radius, defaults to false.
+* `btnPosition`: Position of the submit button, whether to be centered, etc. Options are `center`, `right` and `left`, default is `right`.
+* `submitBtnTxt`: Allows you to change the text written on the submit button, default is `Submit form`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### To Do
+* Add more customizable options to the component
